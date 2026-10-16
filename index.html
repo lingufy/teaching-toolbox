@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LinguFy 教學工具箱，快速開啟課堂互動工具。">
+<title>LinguFy｜我的教學工具箱</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Microsoft JhengHei",sans-serif;background:#f5f4ee;color:#233746}header,main,footer{max-width:1120px;margin:auto;padding:28px 24px}header{border-bottom:1px solid #dce0d9;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-size:22px;font-weight:800;color:#236653}.es{display:block;font-size:.8em;font-weight:400;line-height:1.5;margin-top:6px;color:#5c7069}h1{font-size:clamp(30px,5vw,48px);margin:30px 0 16px}p{line-height:1.8}label{display:block;font-weight:600;margin:32px 0 10px}input{width:100%;max-width:620px;padding:16px;font:inherit;border:1px solid #cbd4ce;border-radius:14px;background:white;color:inherit}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;margin-top:28px}.card{max-width:520px;background:white;border:1px solid #dce0d9;border-radius:24px;padding:28px;box-shadow:0 8px 32px #23374606}.icon{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:#e2eee6;font-size:36px;color:#236653}.category{display:inline-block;background:#f5eee3;border-radius:30px;padding:6px 12px;font-size:13px;margin-top:20px}h2{font-size:26px;margin:16px 0}.open{display:block;text-decoration:none;text-align:center;color:white;background:#236653;border-radius:12px;padding:14px;margin-top:24px;font-weight:600}.open .es{color:white}.open:hover{background:#174a3b}a:focus-visible,input:focus-visible{outline:3px solid #db8c2d;outline-offset:4px}details{margin-top:20px;line-height:1.8}summary{cursor:pointer}footer{font-size:14px;color:#64746e;margin-top:40px}#empty{padding:30px 0}[hidden]{display:none!important}.intro{max-width:650px;color:#64746e}.count{font-size:14px;color:#64746e;margin-top:14px}@media(max-width:600px){header,main,footer{padding:22px 18px}.card{padding:22px}}
+</style>
+</head>
+<body>
+<header><div class="brand">LinguFy<span lang="es" class="es">Herramientas para enseñar</span></div><div>我的教學工具箱<span lang="es" class="es">Mi caja de herramientas</span></div></header>
+<main>
+<h1>教學好幫手，都在這裡。<span lang="es" class="es">Todo listo para tu próxima clase.</span></h1>
+<p class="intro">收藏這個頁面，上課時一鍵開啟需要的工具。<span lang="es" class="es">Guarda esta página en tus favoritos y abre las herramientas que necesites para tu clase.</span></p>
+<label for="search">搜尋工具<span lang="es" class="es">Buscar herramientas</span></label>
+<input id="search" type="search" placeholder="例如：輪盤、抽選 / ruleta, sorteo" autocomplete="off">
+<div id="count" class="count" role="status">1 個工具 · 1 herramienta</div>
+<div class="grid">
+<article class="card" data-search="雙輪盤 輪盤 抽選 抽籤 姓名 任務 課堂互動 ruleta doble sorteo nombres retos actividades">
+<div class="icon" aria-hidden="true">◉</div>
+<div class="category">課堂互動 · <span lang="es">Interacción en clase</span></div>
+<h2>雙輪盤<span lang="es" class="es">Ruleta doble</span></h2>
+<p>兩個輪盤分別抽出姓名與任務，為課堂增添驚喜。支援自訂項目、設定備份與投影。<span lang="es" class="es">Sortea nombres y retos con dos ruletas. Personaliza las opciones, guarda la configuración y usa la pantalla completa.</span></p>
+<a class="open" href="https://lingufy.github.io/double-wheel/" target="_blank" rel="noopener noreferrer">開啟雙輪盤 ↗<span lang="es" class="es">Abrir la ruleta doble · Nueva pestaña</span></a>
+<details><summary>使用方式<span lang="es" class="es">Cómo usarla</span></summary><p>先編輯兩個輪盤的項目，再按「開始雙輪盤」。可分別抽選或同時轉動。請使用 JSON 匯出／匯入保存不同班級的設定。<span lang="es" class="es">Edita las opciones de ambas ruletas y pulsa «Ir a las ruletas». Gíralas por separado o juntas. Exporta e importa archivos JSON para guardar la configuración de cada grupo.</span></p></details>
+</article>
+</div>
+<p id="empty" hidden>找不到符合的工具，請換個關鍵字。<span lang="es" class="es">No se encontraron herramientas. Prueba otra palabra.</span></p>
+</main>
+<footer>LinguFy · 我的教學工具箱<span lang="es" class="es">Mi caja de herramientas para enseñar</span></footer>
+<script>
+'use strict';
+const search=document.getElementById('search');
+search.addEventListener('input',()=>{
+ const query=search.value.trim().toLocaleLowerCase();
+ let count=0;
+ document.querySelectorAll('[data-search]').forEach(card=>{card.hidden=!(card.dataset.search+' '+card.textContent).toLocaleLowerCase().includes(query);if(!card.hidden)count++;});
+ document.getElementById('empty').hidden=count!==0;
+ document.getElementById('count').textContent=count+' 個工具 · '+count+(count===1?' herramienta':' herramientas');
+});
+</script>
+</body></html>
